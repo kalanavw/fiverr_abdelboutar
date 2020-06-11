@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "abdelboutar-web"
+    }
+  },
+  "defaultProject": "abdelboutar-web",
+  "cli": {
+    "analytics": false
+  }
 }

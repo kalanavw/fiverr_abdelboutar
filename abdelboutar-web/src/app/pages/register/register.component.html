@@ -1,0 +1,60 @@
+<section>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-6 d-none d-md-block pl-0">
+        <img src="assets/img/access.png" class="img-fluid">
+      </div>
+      <div class="col-md-6 col-lg-5 p-4 p-md-2 p-lg-5">
+        <h2 class="mb-0">Create new account</h2>
+        <small>Use your work email to create new account... it's free.</small>
+
+        <div class="email-signin mt-2 mt-lg-3 mb-2 mb-lg-3">
+          <form [formGroup]="registerFormGroup" (ngSubmit)="onRegister()">
+            <div class="invalid">
+              <span class="help-block form-error text-danger small"
+                    *ngIf="registerFormGroup.controls['firstName'].errors?.required &&
+                          registerFormGroup.controls['firstName'].touched">Please choose a first Name.
+              </span>
+            </div>
+            <input type="text" name="fname" class="form-control mb-2 mb-lg-3" placeholder="First Name"
+                   formControlName="firstName">
+
+            <div class="invalid">
+              <span class="help-block form-error text-danger small"
+                    *ngIf="registerFormGroup.controls['lastName'].errors?.required &&
+                          registerFormGroup.controls['lastName'].touched">Please choose a last Name.
+              </span>
+            </div>
+            <input type="text" name="lname" class="form-control mb-2 mb-lg-3" placeholder="Last Name"
+                   formControlName="lastName">
+
+            <div class="invalid">
+              <span class="help-block form-error text-danger small"
+                    *ngIf="registerFormGroup.controls['email'].errors?.required &&
+                          registerFormGroup.controls['email'].touched">Please choose a email.
+              </span>
+            </div>
+            <input type="email" name="email" class="form-control mb-2 mb-lg-3" placeholder="Email address"
+                   formControlName="email">
+
+            <div class="invalid">
+              <span class="help-block form-error text-danger small"
+                    *ngIf="registerFormGroup.controls['password'].errors?.required &&
+                          registerFormGroup.controls['password'].touched">Please choose a password.
+              </span>
+            </div>
+            <input type="password" name="password" class="form-control mb-2 mb-lg-3" placeholder="Password"
+                   formControlName="password">
+
+            <div class="mb-2 mb-lg-3">
+              <input type="checkbox" name="agreed"> <small>I have read the </small> <u> <a class="font-14 text-dark"
+                                                                                           href="#">Terms and
+              Conditions</a></u>
+            </div>
+            <button type="submit" class="btn btn-danger btn-block" [disabled]="registerFormGroup.invalid">SIGN UP NOW</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
