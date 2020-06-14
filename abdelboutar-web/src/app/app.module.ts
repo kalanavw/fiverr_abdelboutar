@@ -12,13 +12,7 @@ import {ConsoleComponent} from './pages/console/console.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {Store} from "./model/Store";
-import {
-  AuthServiceConfig,
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  LoginOpt,
-  SocialLoginModule
-} from "angularx-social-login";
+import {AuthServiceConfig, FacebookLoginProvider, LoginOpt, SocialLoginModule} from "angularx-social-login";
 import {AuthInterceptorProvider} from "./config/auth-interceptor.service";
 
 const fbLoginOptions: LoginOpt = {
@@ -32,10 +26,6 @@ const googleLoginOptions: LoginOpt = {
 }
 
 let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
-  },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider("Facebook-App-Id")
