@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {ProductService} from "../../services/product.service";
+import {FormControl, FormGroup} from "@angular/forms";
+import {EsResponse} from "../../model/es-response";
+import {Product} from "../../model/product";
 
 declare var $: any;
 
@@ -8,8 +12,11 @@ declare var $: any;
   styleUrls: ['./console.component.css']
 })
 export class ConsoleComponent implements OnInit {
+  searchForm: FormGroup;
+  public products: Product[] = [];
+  rating = Array;
 
-  constructor() {
+  constructor(private service: ProductService) {
   }
 
   ngOnInit(): void {
@@ -40,6 +47,16 @@ export class ConsoleComponent implements OnInit {
         $('.filter-heading i').removeClass('fa-angle-double-up').addClass('fa-angle-double-down');
         $('.filter-box').hide();
       }
+    });
+    this.searchForm = new FormGroup({
+      name: new FormControl('', []),
+    })
+    this.searchProducts();
+  }
+
+  private searchProducts() {
+    this.service.searchProducts(this.searchForm.value).subscribe((res: EsResponse) => {
+      this.products = res.data;
     });
   }
 

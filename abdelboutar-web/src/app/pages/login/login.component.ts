@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthenticationService} from "../services/authentication.service";
+import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
-import {NameCodePair} from "../model/name-code-pair";
-import {EsResponse} from "../model/es-response";
-import {AUTH, ES_RES_STATUS_OK} from "../model/constants";
-import {Store} from "../model/Store";
+import {NameCodePair} from "../../model/name-code-pair";
+import {EsResponse} from "../../model/es-response";
+import {AUTH, ES_RES_STATUS_OK} from "../../model/constants";
+import {Store} from "../../model/Store";
 import {AuthService, FacebookLoginProvider} from "angularx-social-login";
 
 @Component({

@@ -1,4 +1,3 @@
-
 export const ES_RES_STATUS_OK = 1;
 export const ES_RES_STATUS_ERR = -1;
 export const URL_SEPARATOR = '/';
@@ -9,6 +8,7 @@ export const endPoints = {
   authenticate: 'authenticate',
   register: 'register',
   roles: 'roles',
+  products: 'products'
 };
 
 export const AUTH = {

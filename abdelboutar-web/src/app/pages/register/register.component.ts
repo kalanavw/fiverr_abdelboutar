@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthenticationService} from "../services/authentication.service";
-import {ES_RES_STATUS_OK} from "../model/constants";
+import {AuthenticationService} from "../../services/authentication.service";
+import {ES_RES_STATUS_OK} from "../../model/constants";
 import {Router} from "@angular/router";
 
 @Component({

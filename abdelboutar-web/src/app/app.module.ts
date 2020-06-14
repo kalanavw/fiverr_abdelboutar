@@ -11,7 +11,7 @@ import {HeaderComponent} from './pages/header/header.component';
 import {ConsoleComponent} from './pages/console/console.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {Store} from "./pages/model/Store";
+import {Store} from "./model/Store";
 import {
   AuthServiceConfig,
   FacebookLoginProvider,
@@ -19,6 +19,7 @@ import {
   LoginOpt,
   SocialLoginModule
 } from "angularx-social-login";
+import {AuthInterceptorProvider} from "./config/auth-interceptor.service";
 
 const fbLoginOptions: LoginOpt = {
   scope: 'pages_messaging,pages_messaging_subscriptions,email,pages_show_list,manage_pages',
@@ -69,6 +70,7 @@ export function provideConfig() {
       useFactory: provideConfig
     },
     Store,
+    AuthInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })
