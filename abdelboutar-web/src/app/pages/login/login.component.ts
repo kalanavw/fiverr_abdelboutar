@@ -6,6 +6,7 @@ import {NameCodePair} from "../model/name-code-pair";
 import {EsResponse} from "../model/es-response";
 import {AUTH, ES_RES_STATUS_OK} from "../model/constants";
 import {Store} from "../model/Store";
+import {AuthService, FacebookLoginProvider} from "angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,11 @@ import {Store} from "../model/Store";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  public userFb: any;
+  public loggedIn: any;
 
   constructor(private authService: AuthenticationService,
+              private socialAuthService: AuthService,
               private router: Router,
               private store: Store,
   ) {
@@ -25,6 +29,28 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
+    });
+    this.socialAuthService.authState.subscribe((user: any) => {
+      this.userFb = user;
+      this.loggedIn = (user != null);
+      if (user) {
+        this.loginForm.patchValue({
+          email: user.email,
+          password: user.id
+        });
+        const newUser: any = {
+          firstName: user.last_name,
+          lastName: user.first_name,
+          email: user.email,
+          password: user.id
+        }
+        this.authService.onRegister(newUser).subscribe(value => {
+          if (value.status === ES_RES_STATUS_OK) {
+            this.onLogin();
+          }
+        });
+
+      }
     });
   }
 
@@ -57,4 +83,10 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+  loginFB() {
+    let socialUserPromise = this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    console.log(socialUserPromise)
+  }
+
 }

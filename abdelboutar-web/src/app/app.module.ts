@@ -12,6 +12,38 @@ import {ConsoleComponent} from './pages/console/console.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {Store} from "./pages/model/Store";
+import {
+  AuthServiceConfig,
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  LoginOpt,
+  SocialLoginModule
+} from "angularx-social-login";
+
+const fbLoginOptions: LoginOpt = {
+  scope: 'pages_messaging,pages_messaging_subscriptions,email,pages_show_list,manage_pages',
+  return_scopes: true,
+  enable_profile_selector: true
+}; // https://developers.facebook.com/docs/reference/javascript/FB.login/v2.11
+
+const googleLoginOptions: LoginOpt = {
+  scope: 'profile email'
+}
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("Facebook-App-Id")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -29,8 +61,13 @@ import {Store} from "./pages/model/Store";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SocialLoginModule,
   ],
   providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    },
     Store,
   ],
   bootstrap: [AppComponent]
