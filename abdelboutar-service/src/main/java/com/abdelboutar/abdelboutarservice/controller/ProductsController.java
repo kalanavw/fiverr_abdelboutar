@@ -1,7 +1,7 @@
 package com.abdelboutar.abdelboutarservice.controller;
 
 import com.abdelboutar.abdelboutarservice.model.EsResponse;
-import com.abdelboutar.abdelboutarservice.model.Products;
+import com.abdelboutar.abdelboutarservice.model.Product;
 import com.abdelboutar.abdelboutarservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class ProductsController {
     @Autowired
     private ProductService productService;
     @GetMapping
-    public ResponseEntity<EsResponse<List<Products>>> findProducts(
+    public ResponseEntity<EsResponse<List<Product>>> findProducts(
             @RequestParam(required = false) String name
     ) {
         return ResponseEntity.ok(this.productService.findProducts(queryLikeAny(name)));

@@ -57,6 +57,8 @@ export class ConsoleComponent implements OnInit {
   private searchProducts() {
     this.service.searchProducts(this.searchForm.value).subscribe((res: EsResponse) => {
       this.products = res.data;
+    }, error => {
+      console.log(error);
     });
   }
 

@@ -18,8 +18,18 @@
           <li class="nav-item"><a class="nav-link main-manu-link" href="#">Blog</a></li>
           <li class="nav-item"><a class="nav-link main-manu-link" href="#">Contacto</a></li>
           <li class="nav-item">
-            <a href="#" class="nav-link pt-1" routerLink="login">
-              <button class="btn btn-info btn-sm font-14 pl-4 pr-4 m-login-btn theme-text-purple border-radius bolder"> Login </button></a></li>
+            <a *ngIf="!isLoged" class="nav-link pt-1" href="#" routerLink="login">
+              <button class="btn btn-info btn-sm font-14 pl-4 pr-4 m-login-btn theme-text-purple border-radius bolder">
+                Login
+              </button>
+            </a>
+            <a *ngIf="isLoged" class="nav-link pt-1" href="#" routerLink="login">
+              <button (click)="logout()"
+                      class="btn btn-info btn-sm font-14 pl-4 pr-4 m-login-btn theme-text-purple border-radius bolder">
+                logout
+              </button>
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -69,8 +79,18 @@
           <li class="nav-item"><a class="nav-link main-manu-link" href="#">Blog</a></li>
           <li class="nav-item"><a class="nav-link main-manu-link" href="#">Contacto</a></li>
           <li class="nav-item">
-            <a href="#" class="nav-link pt-1" routerLink="login">
-            <button class="btn btn-info btn-sm font-14 pl-4 pr-4 m-login-btn theme-text-purple border-radius bolder"> Login </button></a></li>
+            <a *ngIf="!isLoged" class="nav-link pt-1" href="#" routerLink="login">
+              <button class="btn btn-info btn-sm font-14 pl-4 pr-4 m-login-btn theme-text-purple border-radius bolder">
+                Login
+              </button>
+            </a>
+            <a *ngIf="isLoged" class="nav-link pt-1" href="#" routerLink="login">
+              <button (click)="logout()"
+                      class="btn btn-info btn-sm font-14 pl-4 pr-4 m-login-btn theme-text-purple border-radius bolder">
+                logout
+              </button>
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @DynamicUpdate
 @Table(name = "PRODUCTS")
-public class Products implements Serializable {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, updatable = false)
@@ -45,5 +45,6 @@ public class Products implements Serializable {
     @Column(name = "MODIFIED_DATE", nullable = false)
     @LastModifiedDate
     private LocalDateTime modifiedDate = LocalDateTime.now();
+
 
 }
