@@ -1,5 +1,6 @@
 package com.abdelboutar.abdelboutarservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
@@ -8,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
  * Copyright (c) 2018. scicom.com.my - All Rights Reserved
@@ -16,41 +18,27 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @DynamicUpdate
-@Table(name = "PRODUCTS")
-public class Product implements Serializable {
+@Table(name = "CATEGORIES")
+public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "DESCRIPTION")
-    private String description;
-
-    @Column(name = "RATING")
-    private Integer rating;
-
-    @Column(name = "PRICE")
-    private Double price;
-
-    @Column(name = "IMAGE")
-    private String image;
-
     @Column(name = "CATEGORY_NAME")
     private String category;
-
-    @Column(name = "SUB_CATEGORY_NAME")
-    private String subCategory;
 
     @Column(name = "CREATED_DATE", nullable = false, updatable = false)
     @CreatedDate
     private LocalDateTime createdDate = LocalDateTime.now();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinTable(name = "CATEGORY_HAS_SUB_CATEGORY", joinColumns = @JoinColumn(name = "CAT_ID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "FK_CAT2SUB_CAT")),
+            inverseJoinColumns = @JoinColumn(name = "SUB_CAT_ID", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "FK_SUB_CAT2CAT")))
+    private Set<SubCategory> subCategories;
+
     @Column(name = "MODIFIED_DATE", nullable = false)
     @LastModifiedDate
     private LocalDateTime modifiedDate = LocalDateTime.now();
-
 
 }

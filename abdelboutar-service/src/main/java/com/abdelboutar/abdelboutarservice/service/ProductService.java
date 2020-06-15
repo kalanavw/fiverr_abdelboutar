@@ -16,7 +16,15 @@ public class ProductService {
     @Autowired
     private IProductsRepository productsRepository;
 
-    public EsResponse<List<Product>> findProducts(String name) {
-        return new EsResponse<>(1, productsRepository.findByNameLike(name), "");
+    public EsResponse<List<Product>> findProducts(String name, String category, String subCategory, Double priceFrom, Double priceTo) {
+        List<Product> byNameLike = this.productsRepository
+                .findByNameLikeAndCategoryLikeAndSubCategoryLikeAndPriceGreaterThanEqualAndPriceLessThanEqual(
+                        name,
+                        category,
+                        subCategory,
+                        priceFrom,
+                        priceTo
+                );
+        return new EsResponse<>(1, byNameLike, "");
     }
 }

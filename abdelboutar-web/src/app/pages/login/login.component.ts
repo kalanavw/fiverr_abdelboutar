@@ -6,7 +6,7 @@ import {NameCodePair} from "../../model/name-code-pair";
 import {EsResponse} from "../../model/es-response";
 import {AUTH, ES_RES_STATUS_OK} from "../../model/constants";
 import {Store} from "../../model/Store";
-import {AuthService, FacebookLoginProvider} from "angularx-social-login";
+import {AuthService, FacebookLoginProvider, GoogleLoginProvider} from "angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -15,8 +15,8 @@ import {AuthService, FacebookLoginProvider} from "angularx-social-login";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  public userFb: any;
   public loggedIn: any;
+  public isFbLogin = false;
 
   constructor(private authService: AuthenticationService,
               private socialAuthService: AuthService,
@@ -31,18 +31,27 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     });
     this.socialAuthService.authState.subscribe((user: any) => {
-      this.userFb = user;
       this.loggedIn = (user != null);
       if (user) {
         this.loginForm.patchValue({
           email: user.email,
           password: user.id
         });
-        const newUser: any = {
-          firstName: user.last_name,
-          lastName: user.first_name,
-          email: user.email,
-          password: user.id
+        let newUser: any;
+        if (this.isFbLogin) {
+          newUser = {
+            firstName: user.last_name,
+            lastName: user.first_name,
+            email: user.email,
+            password: user.id
+          }
+        } else {
+          newUser = {
+            firstName: user.given_name,
+            lastName: user.family_name,
+            email: user.email,
+            password: user.id
+          }
         }
         this.authService.onRegister(newUser).subscribe(value => {
           if (value.status === ES_RES_STATUS_OK) {
@@ -84,9 +93,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  loginFB() {
-    let socialUserPromise = this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    console.log(socialUserPromise)
+  signInWithFB() {
+    this.isFbLogin = true;
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
 }

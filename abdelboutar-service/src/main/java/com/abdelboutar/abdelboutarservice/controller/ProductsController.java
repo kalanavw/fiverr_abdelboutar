@@ -22,9 +22,19 @@ public class ProductsController {
     private ProductService productService;
     @GetMapping
     public ResponseEntity<EsResponse<List<Product>>> findProducts(
-            @RequestParam(required = false) String name
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String subCategory,
+            @RequestParam(required = false) Double priceFrom,
+            @RequestParam(required = false) Double priceTo
     ) {
-        return ResponseEntity.ok(this.productService.findProducts(queryLikeAny(name)));
+        return ResponseEntity.ok(this.productService.findProducts(
+                queryLikeAny(name),
+                queryLikeAny(category),
+                queryLikeAny(subCategory),
+                priceFrom,
+                priceTo
+        ));
     }
 
     public String queryLikeAny(String param) {

@@ -12,4 +12,12 @@ import java.util.List;
 @Repository
 public interface IProductsRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameLike(String name);
+
+    List<Product> findByNameLikeAndCategoryLikeAndSubCategoryLikeAndPriceGreaterThanEqualAndPriceLessThanEqual(
+            String name,
+            String category,
+            String subCategory,
+            Double priceFrom,
+            Double priceTp
+    );
 }

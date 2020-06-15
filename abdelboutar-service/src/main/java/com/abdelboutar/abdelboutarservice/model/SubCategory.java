@@ -1,6 +1,7 @@
 package com.abdelboutar.abdelboutarservice.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,30 +17,13 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @DynamicUpdate
-@Table(name = "PRODUCTS")
-public class Product implements Serializable {
+@Table(name = "SUB_CATEGORIES")
+@NoArgsConstructor
+public class SubCategory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, updatable = false)
     private long id;
-
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "DESCRIPTION")
-    private String description;
-
-    @Column(name = "RATING")
-    private Integer rating;
-
-    @Column(name = "PRICE")
-    private Double price;
-
-    @Column(name = "IMAGE")
-    private String image;
-
-    @Column(name = "CATEGORY_NAME")
-    private String category;
 
     @Column(name = "SUB_CATEGORY_NAME")
     private String subCategory;
@@ -52,5 +36,7 @@ public class Product implements Serializable {
     @LastModifiedDate
     private LocalDateTime modifiedDate = LocalDateTime.now();
 
-
+    public SubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
 }

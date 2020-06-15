@@ -14,4 +14,9 @@ export class ProductService {
     const endPoint = endPoints.products.concat(URL_SEPARATOR);
     return this.httpService.get(endPoint, params);
   }
+
+  loadCategories() {
+    const endPoint = endPoints.categories.concat(URL_SEPARATOR);
+    return this.httpService.get(endPoint);
+  }
 }

@@ -8,7 +8,8 @@ export const endPoints = {
   authenticate: 'authenticate',
   register: 'register',
   roles: 'roles',
-  products: 'products'
+  products: 'products',
+  categories: 'categories'
 };
 
 export const AUTH = {
