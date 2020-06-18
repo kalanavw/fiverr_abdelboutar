@@ -29,6 +29,10 @@ public class UserService {
     public EsResponse<User> createNewUser(User user) {
         user.setPassword(this.bcryptEncoder.encode(user.getPassword()));
         try {
+            Optional<User> byEmail = this.userRepository.findByEmail(user.getEmail());
+            if (byEmail.isPresent()) {
+                return new EsResponse<>(-1, "Email Already Exist");
+            }
             return new EsResponse<>(1, this.userRepository.save(user), "user created success");
         } catch (Exception e) {
             e.printStackTrace();

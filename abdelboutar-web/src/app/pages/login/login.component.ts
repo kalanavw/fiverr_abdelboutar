@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit {
           });
         }
         this.store.setData(AUTH.roles, role);
+        this.authService.loginLogOutEmitter.emit(true);
         alert('login success');
         this.router.navigate(['']);
       } else {

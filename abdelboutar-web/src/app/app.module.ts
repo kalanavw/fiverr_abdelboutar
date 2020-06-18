@@ -12,6 +12,7 @@ import {ConsoleComponent} from './pages/console/console.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {Store} from "./model/Store";
+import {NgxPaginationModule} from 'ngx-pagination';
 import {
   AuthServiceConfig,
   FacebookLoginProvider,
@@ -65,6 +66,7 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
+    NgxPaginationModule,
   ],
   providers: [
     {

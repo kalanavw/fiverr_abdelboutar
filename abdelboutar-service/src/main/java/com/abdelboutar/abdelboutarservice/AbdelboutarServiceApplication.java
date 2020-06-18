@@ -11,7 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -94,7 +93,14 @@ public class AbdelboutarServiceApplication implements CommandLineRunner {
         products.add(p5);
 
         this.productsRepository.saveAll(products);
-
-
+        List<Product> all = this.productsRepository.findAll();
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            all.stream().forEach(product -> {
+                product.setId(0);
+                product.setName(product.getName().concat(" - " + finalI));
+            });
+            this.productsRepository.saveAll(all);
+        }
     }
 }

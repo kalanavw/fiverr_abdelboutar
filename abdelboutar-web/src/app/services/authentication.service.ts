@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpService} from './http.service';
 import {NameCodePair} from "../model/name-code-pair";
 import {endPoints, URL_SEPARATOR} from "../model/constants";
@@ -7,6 +7,8 @@ import {endPoints, URL_SEPARATOR} from "../model/constants";
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  public loginLogOutEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private httpService: HttpService) {
   }

@@ -17,6 +17,9 @@ export class ConsoleComponent implements OnInit {
   public categories: any[] = [];
   public subCategories: any[] = [];
   rating = Array;
+  public totalPagesArr: number[] = [];
+  itemsPerPage: string | number = 10;
+  page: string | number = 1;
 
   constructor(private service: ProductService) {
   }
@@ -66,7 +69,7 @@ export class ConsoleComponent implements OnInit {
       priceTo: this.searchForm.value.priceTo,
     }
     this.service.searchProducts(param).subscribe((res: EsResponse) => {
-      this.products = res.data;
+      this.products = res.data; 
     }, error => {
       console.log(error);
     });

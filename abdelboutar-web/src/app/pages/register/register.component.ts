@@ -29,6 +29,8 @@ export class RegisterComponent implements OnInit {
     this.authService.onRegister(this.registerFormGroup.value).subscribe(value => {
       if(value.status === ES_RES_STATUS_OK){
         this.router.navigate(['login']);
+      }else{
+        alert(value.message);
       }
     });
   }

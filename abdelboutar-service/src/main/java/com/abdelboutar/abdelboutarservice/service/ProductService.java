@@ -17,7 +17,7 @@ public class ProductService {
     private IProductsRepository productsRepository;
 
     public EsResponse<List<Product>> findProducts(String name, String category, String subCategory, Double priceFrom, Double priceTo) {
-        List<Product> byNameLike = this.productsRepository
+        List<Product> productList = this.productsRepository
                 .findByNameLikeAndCategoryLikeAndSubCategoryLikeAndPriceGreaterThanEqualAndPriceLessThanEqual(
                         name,
                         category,
@@ -25,6 +25,6 @@ public class ProductService {
                         priceFrom,
                         priceTo
                 );
-        return new EsResponse<>(1, byNameLike, "");
+        return new EsResponse<>(1, productList, "");
     }
 }
