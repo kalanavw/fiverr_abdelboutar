@@ -100,7 +100,8 @@
           <div class="row">
 
             <!-- Product -->
-            <div *ngFor="let product of products  | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" class="col-12 col-lg-6 col-xl-4 mb-5 pl-lg-2 pr-lg-2">
+            <div *ngFor="let product of products  | paginate: { itemsPerPage: itemsPerPage, currentPage: page }"
+                 class="col-12 col-lg-6 col-xl-4 mb-5 pl-lg-2 pr-lg-2">
               <div class="card mb-3 box-shadow border-radius pt-2">
                 <div class="col-md-12 text-center position-relative mb-3">
                   <div class="position-absolute w-100 pr-4">
@@ -109,9 +110,10 @@
                   </div>
                   <div class="mt-3">
                     <!--src="assets/img/products/product-3.png"-->
-                    <a href="result.html"><img [src]="product.image" alt="Logitech G Pro"
-                                               class="pro-image img-fluid"
-                                               title="Logitech G Pro"></a>
+                    <a (click)="navigateToResult(product.id)" href="javascript:void(0)"><img [src]="product.image"
+                                                                                             alt="Logitech G Pro"
+                                                                                             class="pro-image img-fluid"
+                                                                                             title="Logitech G Pro"></a>
                   </div>
                 </div>
                 <div class="position-relative">
@@ -139,7 +141,7 @@
                     </div>
                     <div class="col-6 pr-2 text-right">
                       <a class="btn btn-warning font-10 text-white pl-2 pr-2 pt-1 pb-1 btn-radius btn-sm"
-                         href="result.html">Comparar</a>
+                         (click)="navigateToResult(product.id)" href="javascript:void(0)">Comparar</a>
                     </div>
                   </div>
                 </div>

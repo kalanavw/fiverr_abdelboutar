@@ -21,6 +21,7 @@ import {
   SocialLoginModule
 } from "angularx-social-login";
 import {AuthInterceptorProvider} from "./config/auth-interceptor.service";
+import {ResultComponent} from './pages/result/result.component';
 
 const fbLoginOptions: LoginOpt = {
   scope: 'pages_messaging,pages_messaging_subscriptions,email,pages_show_list,manage_pages',
@@ -57,7 +58,8 @@ export function provideConfig() {
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    ConsoleComponent
+    ConsoleComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

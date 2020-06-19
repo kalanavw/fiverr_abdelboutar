@@ -3,6 +3,7 @@ import {ProductService} from "../../services/product.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {EsResponse} from "../../model/es-response";
 import {Product} from "../../model/product";
+import {Router} from "@angular/router";
 
 declare var $: any;
 
@@ -21,7 +22,7 @@ export class ConsoleComponent implements OnInit {
   itemsPerPage: string | number = 10;
   page: string | number = 1;
 
-  constructor(private service: ProductService) {
+  constructor(private service: ProductService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -69,7 +70,7 @@ export class ConsoleComponent implements OnInit {
       priceTo: this.searchForm.value.priceTo,
     }
     this.service.searchProducts(param).subscribe((res: EsResponse) => {
-      this.products = res.data; 
+      this.products = res.data;
     }, error => {
       console.log(error);
     });
@@ -88,5 +89,9 @@ export class ConsoleComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  navigateToResult(id: any) {
+    this.router.navigate(['result'], {queryParams: {id: id}})
   }
 }

@@ -5,10 +5,7 @@ import com.abdelboutar.abdelboutarservice.model.Product;
 import com.abdelboutar.abdelboutarservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +32,10 @@ public class ProductsController {
                 priceFrom,
                 priceTo
         ));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<EsResponse<Product>> findById(@PathVariable long id){
+        return ResponseEntity.ok(this.productService.findById(id));
     }
 
     public String queryLikeAny(String param) {

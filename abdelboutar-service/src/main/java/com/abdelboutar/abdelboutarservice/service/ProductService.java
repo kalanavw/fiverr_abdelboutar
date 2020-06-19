@@ -4,6 +4,7 @@ import com.abdelboutar.abdelboutarservice.model.EsResponse;
 import com.abdelboutar.abdelboutarservice.model.Product;
 import com.abdelboutar.abdelboutarservice.repository.IProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +27,9 @@ public class ProductService {
                         priceTo
                 );
         return new EsResponse<>(1, productList, "");
+    }
+
+    public EsResponse<Product> findById(long id) {
+        return new EsResponse<>(1, this.productsRepository.findById(id).get(),"");
     }
 }

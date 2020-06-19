@@ -5,4 +5,6 @@ export class Product {
   description: string;
   rating: number;
   price: number;
+  category: any;
+  subCategory: any;
 }
